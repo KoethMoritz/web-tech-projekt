@@ -6,3 +6,7 @@
 # Datasource local storage ignored files
 /dataSources/
 /dataSources.local.xml
+
+### H2 DB  ###
+*.mv.db
+*.trace.db
