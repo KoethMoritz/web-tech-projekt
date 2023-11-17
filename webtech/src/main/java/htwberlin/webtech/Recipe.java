@@ -6,16 +6,16 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class Thing {
+public class Recipe {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
 
-    public Thing() {}
+    public Recipe() {}
 
-    public Thing(String name) {
+    public Recipe(String name) {
         this.name = name;
     }
 
@@ -38,12 +38,12 @@ public class Thing {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Thing)) return false;
+        if (!(o instanceof Recipe)) return false;
 
-        Thing thing = (Thing) o;
+        Recipe recipe = (Recipe) o;
 
-        if (getId() != null ? !getId().equals(thing.getId()) : thing.getId() != null) return false;
-        return getName() != null ? getName().equals(thing.getName()) : thing.getName() == null;
+        if (getId() != null ? !getId().equals(recipe.getId()) : recipe.getId() != null) return false;
+        return getName() != null ? getName().equals(recipe.getName()) : recipe.getName() == null;
     }
 
     @Override
