@@ -55,7 +55,7 @@ public class Recipe {
 
     @Override
     public String toString() {
-        return "Thing{" +
+        return "Recipe{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';
