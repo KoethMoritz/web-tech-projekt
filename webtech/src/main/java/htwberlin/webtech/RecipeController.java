@@ -10,11 +10,13 @@ public class RecipeController {
     RecipeService service;
 
     @PostMapping("/recipe")
+    @CrossOrigin(origins = "http://localhost:3000")
     public Recipe createRecipe(@RequestBody Recipe recipe) {
         return service.save(recipe);
     }
 
     @GetMapping("/recipe/{id}")
+    @CrossOrigin(origins = "http://localhost:3000")
     public Recipe getRecipe(@PathVariable String id) {
         Long recipeId = Long.parseLong(id);
         return service.get(recipeId);
