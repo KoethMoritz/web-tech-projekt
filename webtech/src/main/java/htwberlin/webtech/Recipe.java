@@ -12,11 +12,13 @@ public class Recipe {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    private String description;
 
     public Recipe() {}
 
-    public Recipe(String name) {
+    public Recipe(String name, String description) {
         this.name = name;
+        this.description = description;
     }
 
     public String getName() {
@@ -25,6 +27,14 @@ public class Recipe {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public void setId(Long id) {
@@ -43,13 +53,15 @@ public class Recipe {
         Recipe recipe = (Recipe) o;
 
         if (getId() != null ? !getId().equals(recipe.getId()) : recipe.getId() != null) return false;
-        return getName() != null ? getName().equals(recipe.getName()) : recipe.getName() == null;
+        if (getName() != null ? !getName().equals(recipe.getName()) : recipe.getName() != null) return false;
+        return getDescription() != null ? getDescription().equals(recipe.getDescription()) : recipe.getDescription() == null;
     }
 
     @Override
     public int hashCode() {
         int result = getId() != null ? getId().hashCode() : 0;
-        result = 1 * result + (getName() != null ? getName().hashCode() : 0);
+        result = result + (getName() != null ? getName().hashCode() : 0);
+        result = result + (getDescription() != null ? getDescription().hashCode() : 0);
         return result;
     }
 
@@ -58,7 +70,7 @@ public class Recipe {
         return "Recipe{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
                 '}';
     }
-
 }
