@@ -35,4 +35,5 @@ public class RecipeController {
         service.delete(id);
         return ResponseEntity.ok("Recipe deleted successfully");
     }
+
 }
