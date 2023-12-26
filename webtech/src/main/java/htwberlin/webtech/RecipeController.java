@@ -22,4 +22,9 @@ public class RecipeController {
         return service.get(recipeId);
     }
 
+    @PostMapping("/save-recipe")
+    @CrossOrigin(origins = "http://localhost:3000")
+    public Recipe saveRecipe(@RequestParam String name, @RequestParam String description) {
+        return service.saveRecipe(name, description);
+    }
 }

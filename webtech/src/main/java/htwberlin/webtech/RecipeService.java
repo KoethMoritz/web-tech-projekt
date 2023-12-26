@@ -23,8 +23,12 @@ public class RecipeService {
     public List<Recipe> getAll() {
         Iterable<Recipe> iterator = repo.findAll();
         List<Recipe> recipes = new ArrayList<>();
-        for (Recipe recipe : iterator)  recipes.add(recipe);
+        for (Recipe recipe : iterator) recipes.add(recipe);
         return recipes;
     }
 
+    public Recipe saveRecipe(String name, String description) {
+        Recipe newRecipe = new Recipe(name, description);
+        return save(newRecipe);
+    }
 }
