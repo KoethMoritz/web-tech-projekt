@@ -31,4 +31,8 @@ public class RecipeService {
         Recipe newRecipe = new Recipe(name, description);
         return save(newRecipe);
     }
+
+    public void delete(Long id) {
+        repo.deleteById(id);
+    }
 }
