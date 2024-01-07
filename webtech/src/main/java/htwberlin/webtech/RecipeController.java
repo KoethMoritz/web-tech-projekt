@@ -36,4 +36,15 @@ public class RecipeController {
         return ResponseEntity.ok("Recipe deleted successfully");
     }
 
+    @PutMapping("/recipe/{id}")
+    @CrossOrigin(origins = "http://localhost:3000")
+    public ResponseEntity<String> updateRecipe(@PathVariable Long id, @RequestBody Recipe updatedRecipe) {
+        try {
+            Recipe updated = service.update(id, updatedRecipe);
+            return ResponseEntity.ok("Recipe updated successfully");
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
 }

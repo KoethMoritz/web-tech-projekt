@@ -36,4 +36,18 @@ public class RecipeService {
         repo.deleteById(id);
     }
 
+    public Recipe update(Long id, Recipe updatedRecipe) {
+        Recipe existingRecipe = get(id);
+
+        if (existingRecipe != null) {
+            existingRecipe.setName(updatedRecipe.getName());
+            existingRecipe.setDescription(updatedRecipe.getDescription());
+            existingRecipe.setPreparationTime(updatedRecipe.getPreparationTime());
+
+            return save(existingRecipe);
+        } else {
+            throw new RuntimeException("Recipe not found");
+        }
+    }
+
 }
