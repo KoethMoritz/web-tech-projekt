@@ -25,8 +25,8 @@ public class RecipeController {
 
     @PostMapping("/save-recipe")
     @CrossOrigin(origins = "http://localhost:3000")
-    public Recipe saveRecipe(@RequestParam String name, @RequestParam String description) {
-        return service.saveRecipe(name, description);
+    public Recipe saveRecipe(@RequestParam String name, @RequestParam String description, @RequestParam int preparationTime) {
+        return service.saveRecipe(name, description, preparationTime);
     }
 
     @DeleteMapping("/recipe/{id}")

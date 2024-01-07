@@ -11,12 +11,14 @@ public class Recipe {
     private String name;
     @Column(length = 100000)
     private String description;
+    private int preparationTime;
 
     public Recipe() {}
 
-    public Recipe(String name, String description) {
+    public Recipe(String name, String description, int preparationTime) {
         this.name = name;
         this.description = description;
+        this.preparationTime = preparationTime;
     }
 
     public String getName() {
@@ -33,6 +35,14 @@ public class Recipe {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public int getPreparationTime() {
+        return preparationTime;
+    }
+
+    public void setPreparationTime(int preparationTime) {
+        this.preparationTime = preparationTime;
     }
 
     public void setId(Long id) {
@@ -52,7 +62,9 @@ public class Recipe {
 
         if (getId() != null ? !getId().equals(recipe.getId()) : recipe.getId() != null) return false;
         if (getName() != null ? !getName().equals(recipe.getName()) : recipe.getName() != null) return false;
-        return getDescription() != null ? getDescription().equals(recipe.getDescription()) : recipe.getDescription() == null;
+        if (getDescription() != null ? !getDescription().equals(recipe.getDescription()) : recipe.getDescription() == null)
+            return false;
+        return getPreparationTime() == recipe.getPreparationTime();
     }
 
     @Override
@@ -60,6 +72,7 @@ public class Recipe {
         int result = getId() != null ? getId().hashCode() : 0;
         result = result + (getName() != null ? getName().hashCode() : 0);
         result = result + (getDescription() != null ? getDescription().hashCode() : 0);
+        result = result + getPreparationTime();
         return result;
     }
 
@@ -69,6 +82,7 @@ public class Recipe {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
+                ", preparationTime=" + preparationTime +
                 '}';
     }
 }

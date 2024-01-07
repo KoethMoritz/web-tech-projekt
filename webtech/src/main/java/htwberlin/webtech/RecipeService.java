@@ -27,8 +27,8 @@ public class RecipeService {
         return recipes;
     }
 
-    public Recipe saveRecipe(String name, String description) {
-        Recipe newRecipe = new Recipe(name, description);
+    public Recipe saveRecipe(String name, String description, int preparationTime) {
+        Recipe newRecipe = new Recipe(name, description, preparationTime);
         return save(newRecipe);
     }
 
