@@ -1,6 +1,7 @@
 package htwberlin.webtech;
 
 import jakarta.persistence.*;
+import java.util.List;
 
 @Entity
 public class Recipe {
@@ -8,10 +9,17 @@ public class Recipe {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
+
     @Column(length = 100000)
     private String description;
+
     private int preparationTime;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @JoinColumn(name = "recipe_id")
+    private List<Ingredient> ingredients;
 
     public Recipe() {}
 
@@ -19,6 +27,14 @@ public class Recipe {
         this.name = name;
         this.description = description;
         this.preparationTime = preparationTime;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -45,12 +61,12 @@ public class Recipe {
         this.preparationTime = preparationTime;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public List<Ingredient> getIngredients() {
+        return ingredients;
     }
 
-    public Long getId() {
-        return id;
+    public void setIngredients(List<Ingredient> ingredients) {
+        this.ingredients = ingredients;
     }
 
     @Override
