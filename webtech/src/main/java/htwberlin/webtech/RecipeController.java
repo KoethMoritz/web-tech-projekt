@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class RecipeController {
 
@@ -56,6 +58,12 @@ public class RecipeController {
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
+    }
+
+    @GetMapping("/recipes")
+    @CrossOrigin(origins = "http://localhost:3000")
+    public List<Recipe> getAllRecipes() {
+        return service.getAll();
     }
 
 }
