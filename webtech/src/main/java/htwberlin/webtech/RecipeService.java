@@ -43,6 +43,7 @@ public class RecipeService {
             existingRecipe.setName(updatedRecipe.getName());
             existingRecipe.setDescription(updatedRecipe.getDescription());
             existingRecipe.setPreparationTime(updatedRecipe.getPreparationTime());
+            existingRecipe.setIngredients(updatedRecipe.getIngredients());
 
             return save(existingRecipe);
         } else {
