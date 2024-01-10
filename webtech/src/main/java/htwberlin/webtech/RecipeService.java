@@ -51,4 +51,18 @@ public class RecipeService {
         }
     }
 
+    public Recipe removeIngredient(Long recipeId, Long ingredientId) {
+        Recipe existingRecipe = get(recipeId);
+
+        if (existingRecipe != null) {
+            List<Ingredient> ingredients = existingRecipe.getIngredients();
+            ingredients.removeIf(ingredient -> ingredient.getIngredientId().equals(ingredientId));
+            existingRecipe.setIngredients(ingredients);
+
+            return save(existingRecipe);
+        } else {
+            throw new RuntimeException("Recipe not found");
+        }
+    }
+
 }

@@ -47,4 +47,15 @@ public class RecipeController {
         }
     }
 
+    @DeleteMapping("/recipe/{recipeId}/ingredient/{ingredientId}")
+    @CrossOrigin(origins = "http://localhost:3000")
+    public ResponseEntity<String> removeIngredient(@PathVariable Long recipeId, @PathVariable Long ingredientId) {
+        try {
+            Recipe updated = service.removeIngredient(recipeId, ingredientId);
+            return ResponseEntity.ok("Ingredient removed successfully");
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
 }
