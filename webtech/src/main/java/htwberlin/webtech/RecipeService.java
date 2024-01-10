@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class RecipeService {
@@ -23,7 +25,14 @@ public class RecipeService {
     public List<Recipe> getAll() {
         Iterable<Recipe> iterator = repo.findAll();
         List<Recipe> recipes = new ArrayList<>();
-        for (Recipe recipe : iterator) recipes.add(recipe);
+        for (Recipe recipe : iterator) {
+            recipes.add(recipe);
+        }
+
+        recipes = recipes.stream()
+                .sorted(Comparator.comparing(Recipe::getName))
+                .collect(Collectors.toList());
+
         return recipes;
     }
 
