@@ -74,4 +74,13 @@ public class RecipeService {
         }
     }
 
+    public List<Recipe> searchRecipes(String keyword) {
+        if (keyword != null && !keyword.isEmpty()) {
+            return repo.findAllByNameContainingIgnoreCase(keyword);
+        } else {
+            return getAll();
+        }
+    }
+
+
 }

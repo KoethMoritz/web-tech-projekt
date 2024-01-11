@@ -66,4 +66,11 @@ public class RecipeController {
         return service.getAll();
     }
 
+    @GetMapping("/recipes/search")
+    @CrossOrigin(origins = "http://localhost:3000")
+    public List<Recipe> searchRecipes(@RequestParam(required = false) String keyword) {
+        return service.searchRecipes(keyword);
+    }
+
+
 }
