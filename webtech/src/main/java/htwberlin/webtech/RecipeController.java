@@ -40,14 +40,15 @@ public class RecipeController {
 
     @PutMapping("/recipe/{id}")
     @CrossOrigin(origins = "http://localhost:3000")
-    public ResponseEntity<String> updateRecipe(@PathVariable Long id, @RequestBody Recipe updatedRecipe) {
+    public ResponseEntity<Recipe> updateRecipe(@PathVariable Long id, @RequestBody Recipe updatedRecipe) {
         try {
             Recipe updated = service.update(id, updatedRecipe);
-            return ResponseEntity.ok("Recipe updated successfully");
+            return ResponseEntity.ok(updated);
         } catch (RuntimeException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+            return ResponseEntity.badRequest().body(null);
         }
     }
+
 
     @DeleteMapping("/recipe/{recipeId}/ingredient/{ingredientId}")
     @CrossOrigin(origins = "http://localhost:3000")
